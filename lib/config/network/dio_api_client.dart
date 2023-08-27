@@ -1,4 +1,5 @@
 import 'package:base_project/config/network/logging_interceptor.dart';
+import 'package:base_project/config/network/network.dart';
 import 'package:dio/dio.dart';
 
 
@@ -18,7 +19,7 @@ class DioApiClient {
           );
 
       _instance = Dio(options);
-      // _instance!.interceptors.add(DioCookieManager.instance);
+      _instance!.interceptors.add(JwtInterceptor.instance);
       _instance!.interceptors.add(LoggingInterceptor());
     }
     return _instance;

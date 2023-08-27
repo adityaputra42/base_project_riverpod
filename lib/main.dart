@@ -6,9 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'config/config.dart';
 import 'utils/util.dart';
 
-void main()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   await PrefHelper.instance.init();
+
+  await PrefHelper.instance.init();
+  await JwtInterceptor.instance.init();
   runApp(const ProviderScope(child: MyApp()));
 }
 
