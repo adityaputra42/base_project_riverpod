@@ -1,5 +1,9 @@
 import 'package:base_project/config/config.dart';
 import 'package:base_project/domain/repository/repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final authRepositoryProvider =
+    Provider<AuthController>((ref) => AuthController());
 
 class AuthController implements AuthRepository {
   final apiClient = DioClient.instance;

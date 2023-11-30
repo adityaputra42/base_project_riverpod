@@ -23,3 +23,6 @@ final forgotPassworProvider = FutureProvider.autoDispose
 
 final logoutProvider = FutureProvider.autoDispose(
     (ref) => ref.watch(authRepositoryProvider).logout());
+
+
+// class Auth
