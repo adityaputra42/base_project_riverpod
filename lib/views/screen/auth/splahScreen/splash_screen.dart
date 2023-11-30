@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:base_project/config/config.dart';
-import 'package:base_project/provider/splash_provider.dart';
-import 'package:base_project/views/pages/MainScreen/main_screen.dart';
-import 'package:base_project/views/pages/auth/onboarding/onboarding_screen.dart';
+import 'package:base_project/views/provider/splash_provider.dart';
+import 'package:base_project/views/screen/MainScreen/main_screen.dart';
+import 'package:base_project/views/screen/auth/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

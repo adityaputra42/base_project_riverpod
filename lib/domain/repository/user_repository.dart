@@ -1,5 +1,5 @@
-import 'package:base_project/data/model/network/api_response_data.dart';
+import 'package:base_project/config/network/network.dart';
 
 abstract class UserRepository {
-  // Future<ApiResponseData> fecthUser();
+  Future<BaseResponse> fecthUser();
 }

@@ -1,4 +1,4 @@
-import 'package:base_project/views/pages/auth/splahScreen/splash_screen.dart';
+import 'package:base_project/views/screen/auth/splahScreen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +10,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await PrefHelper.instance.init();
-  await JwtInterceptor.instance.init();
   runApp(const ProviderScope(child: MyApp()));
 }
 

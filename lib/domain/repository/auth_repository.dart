@@ -1,11 +1,11 @@
-import 'package:base_project/data/model/network/api_response_data.dart';
+import 'package:base_project/config/network/network.dart';
 
 abstract class AuthRepository {
-  // Future<ApiResponseData> login({required dynamic body});
+  Future<BaseResponse> login({required dynamic body});
 
-  // Future<ApiResponseData> register({required dynamic body});
+  Future<BaseResponse> register({required dynamic body});
 
-  // Future<void> logout();
+  Future<void> logout();
 
-  // Future<ApiResponseData> forgotPassword({required dynamic body});
+  Future<BaseResponse> forgotPassword({required dynamic body});
 }

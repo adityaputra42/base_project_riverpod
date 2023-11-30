@@ -1,6 +1,6 @@
 import 'package:base_project/config/theme/app_font.dart';
 import 'package:base_project/utils/util.dart';
-import 'package:base_project/views/pages/auth/login/login_screen.dart';
+import 'package:base_project/views/screen/auth/login/login_screen.dart';
 import 'package:base_project/views/widget/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

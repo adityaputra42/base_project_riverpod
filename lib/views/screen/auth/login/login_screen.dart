@@ -1,7 +1,7 @@
 import 'package:base_project/config/config.dart';
-import 'package:base_project/provider/splash_provider.dart';
+import 'package:base_project/views/provider/splash_provider.dart';
 import 'package:base_project/utils/util.dart';
-import 'package:base_project/views/pages/MainScreen/main_screen.dart';
+import 'package:base_project/views/screen/MainScreen/main_screen.dart';
 import 'package:base_project/views/widget/input_text.dart';
 import 'package:base_project/views/widget/primary_button.dart';
 import 'package:flutter/material.dart';
