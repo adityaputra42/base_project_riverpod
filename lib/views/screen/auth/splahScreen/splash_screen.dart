@@ -1,14 +1,12 @@
 import 'dart:async';
 
 import 'package:base_project/config/config.dart';
-import 'package:base_project/views/provider/splash_provider.dart';
-import 'package:base_project/views/screen/MainScreen/main_screen.dart';
-import 'package:base_project/views/screen/auth/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
-import '../login/login_screen.dart';
+import '../../../provider/splash/splash_provider.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -20,24 +18,17 @@ class SplashScreen extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
-    ref.read(isNewUseProvider.notifier).checkFirstInstall();
     Timer(const Duration(seconds: 5), () {
-      if (ref.read(isNewUseProvider) == false) {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const OnBoardingScreen()),
-            (route) => false);
+      if (ref.watch(newUserProvider) == true) {
+        context.goNamed('onboarding');
       } else {
-        if (ref.read(isLoginProvider) == true) {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const MainScreen()),
-              (route) => false);
+        if (ref.watch(checkUserProvider).when(
+            data: (data) => data,
+            error: (error, stackTrace) => false,
+            loading: () => false)) {
+          context.goNamed('main');
         } else {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-              (route) => false);
+          context.goNamed('login');
         }
       }
     });

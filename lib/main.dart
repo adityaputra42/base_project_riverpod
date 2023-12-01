@@ -1,4 +1,3 @@
-import 'package:base_project/views/screen/auth/splahScreen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,11 +12,13 @@ void main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appRouter = ref.watch(appRouteProvider);
+
     return ScreenUtilInit(
         useInheritedMediaQuery: true,
         designSize: const Size(430, 932),
@@ -25,11 +26,13 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return Builder(builder: (context) {
-            return MaterialApp(
+            return MaterialApp.router(
+              routeInformationParser: appRouter.routeInformationParser,
+              routerDelegate: appRouter.routerDelegate,
+              routeInformationProvider: appRouter.routeInformationProvider,
               debugShowCheckedModeBanner: false,
               title: 'Base project',
               theme: Styles.themeData(false, context),
-              home: const SplashScreen(),
             );
           });
         });
