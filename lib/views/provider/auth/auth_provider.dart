@@ -1,7 +1,10 @@
+import 'package:base_project/utils/util.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:base_project/config/network/network.dart';
 import 'package:base_project/domain/controller/auth_controller.dart';
+
+import '../../../config/config.dart';
 
 part 'auth_provider.g.dart';
 
@@ -29,7 +32,9 @@ Future<BaseResponse?> forgotPassword(ForgotPasswordRef ref, body) async {
 
 @riverpod
 Future<void> logout(LogoutRef ref) async {
-  await ref.watch(authRepositoryProvider).logout();
-
+  // await ref.watch(authRepositoryProvider).logout();
+  await Future.delayed(const Duration(seconds: 1));
+  PrefHelper.instance.setLogin(false);
+  ref.read(appRouteProvider).goNamed('login');
   return;
 }

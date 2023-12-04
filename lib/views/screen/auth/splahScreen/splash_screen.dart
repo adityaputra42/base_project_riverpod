@@ -22,10 +22,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       if (ref.watch(newUserProvider) == true) {
         context.goNamed('onboarding');
       } else {
-        if (ref.watch(checkUserProvider).when(
-            data: (data) => data,
-            error: (error, stackTrace) => false,
-            loading: () => false)) {
+        if (ref.watch(checkUserProvider) == true) {
           context.goNamed('main');
         } else {
           context.goNamed('login');

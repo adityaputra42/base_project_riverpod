@@ -20,4 +20,10 @@ class PrefHelper {
   }
 
   bool get isFirstInstall => _pref.getBool("firstInstall") ?? true;
+
+  Future<bool> setLogin(bool login) async {
+    return await _pref.setBool("islogin", login);
+  }
+
+  bool get isLogin => _pref.getBool("islogin") ?? true;
 }

@@ -12,16 +12,17 @@ class NewUser extends _$NewUser {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CheckUser extends _$CheckUser {
   @override
-  Future<bool> build() async {
-    await Future.delayed(const Duration(seconds: 2));
-    return false;
+  bool build() {
+    bool isLogin = PrefHelper.instance.isLogin;
+    return isLogin;
   }
 
-  void changeLogin() {
-    state = const AsyncData(true);
+  void changeLogin() async {
+    state =true;
+    await PrefHelper.instance.setLogin(true);
     ref.watch(appRouteProvider).goNamed('main');
   }
 }

@@ -10,7 +10,7 @@ import '../../views/screen/auth/login/login_screen.dart';
 import '../../views/screen/auth/onboarding/onboarding_screen.dart';
 part 'app_route.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 GoRouter appRoute(AppRouteRef ref) {
   return GoRouter(routes: [
     GoRoute(

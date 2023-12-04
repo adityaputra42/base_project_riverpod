@@ -1,10 +1,10 @@
 import 'package:base_project/config/theme/app_font.dart';
 import 'package:base_project/utils/util.dart';
-import 'package:base_project/views/screen/auth/login/login_screen.dart';
 import 'package:base_project/views/widget/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 final onBoardingProvider = StateProvider<int>((ref) => 0);
 
@@ -23,10 +23,7 @@ class OnBoardingScreen extends ConsumerWidget {
               ref.read(onBoardingProvider.notifier).state += 1;
             } else {
               PrefHelper.instance.setFirstInstall();
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                  (route) => false);
+            context.goNamed('login');
             }
           }),
       body: Center(

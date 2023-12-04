@@ -20,12 +20,11 @@ final newUserProvider = AutoDisposeNotifierProvider<NewUser, bool>.internal(
 );
 
 typedef _$NewUser = AutoDisposeNotifier<bool>;
-String _$checkUserHash() => r'440f90e4f507ace34dbe89b3a2455ea9d633b5b3';
+String _$checkUserHash() => r'c735d4b6f1e9a706f1acc153a0470315c7ae1893';
 
 /// See also [CheckUser].
 @ProviderFor(CheckUser)
-final checkUserProvider =
-    AutoDisposeAsyncNotifierProvider<CheckUser, bool>.internal(
+final checkUserProvider = NotifierProvider<CheckUser, bool>.internal(
   CheckUser.new,
   name: r'checkUserProvider',
   debugGetCreateSourceHash:
@@ -34,6 +33,6 @@ final checkUserProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$CheckUser = AutoDisposeAsyncNotifier<bool>;
+typedef _$CheckUser = Notifier<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

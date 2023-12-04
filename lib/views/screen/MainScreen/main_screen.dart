@@ -1,4 +1,5 @@
 import 'package:base_project/config/config.dart';
+import 'package:base_project/views/screen/MainScreen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,9 +35,7 @@ class MainScreen extends ConsumerWidget {
             child: Text("Wallet Screen"),
           );
         case 3:
-          return const Center(
-            child: Text("Profile Screen"),
-          );
+          return ProfileScreen();
 
         default:
           return const Center(
