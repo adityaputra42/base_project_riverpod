@@ -6,12 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../config/config.dart';
 
 class InputText extends StatelessWidget {
-  final String? title;
+  final String title;
   final String hintText;
   final bool obscureText;
-  final bool strength;
   final Widget? icon;
-  final Widget? prefixIcon;
+
   final Function()? ontaped;
   final Function(String)? onChange;
   final String? Function(String?)? validator;
@@ -22,60 +21,49 @@ class InputText extends StatelessWidget {
   final Widget? crossTitle;
   final List<TextInputFormatter>? inputFormatters;
   final FocusNode? focusNode;
-  final bool? readOnly;
-  final bool? enable;
-  final Widget? suffix;
-  final double width;
-  final TextStyle? titleStyle;
-  const InputText(
-      {Key? key,
-      this.obscureText = false,
-      this.strength = false,
-      this.title,
-      required this.hintText,
-      this.onChange,
-      this.ontaped,
-      this.textInputAction,
-      this.icon,
-      this.prefixIcon,
-      this.maxLine = 1,
-      this.width = double.infinity,
-      this.crossTitle,
-      this.validator,
-      this.controller,
-      this.keyboardType,
-      this.inputFormatters,
-      this.focusNode,
-      this.readOnly,
-      this.suffix,
-      this.enable,
-      this.titleStyle})
-      : super(key: key);
+  final bool enable;
+  final bool autoFocus;
+  const InputText({
+    Key? key,
+    this.obscureText = false,
+    required this.title,
+    required this.hintText,
+    this.enable = true,
+    this.autoFocus = false,
+    this.onChange,
+    this.ontaped,
+    this.textInputAction,
+    this.icon,
+    this.maxLine = 1,
+    this.crossTitle,
+    this.validator,
+    this.controller,
+    this.keyboardType,
+    this.inputFormatters,
+    this.focusNode,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          title != null && title != ''
-              ? Column(
-                  children: [
-                    Text(
-                      title ?? '',
-                      style: titleStyle ?? AppFont.medium14,
-                    ),
-                    8.0.height,
-                  ],
-                )
-              : const SizedBox(),
-          TextFormField(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title,
+                style: AppFont.medium14.copyWith(
+                  color: Theme.of(context).indicatorColor,
+                )),
+            crossTitle ?? const SizedBox()
+          ],
+        ),
+        8.0.height,
+        TextFormField(
             focusNode: focusNode,
             onChanged: onChange,
-            enabled: enable,
-            readOnly: readOnly ?? false,
             validator: validator,
+            autofocus: autoFocus,
             textInputAction: textInputAction,
             inputFormatters: inputFormatters,
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -84,50 +72,42 @@ class InputText extends StatelessWidget {
             controller: controller,
             onTap: ontaped,
             maxLines: maxLine,
-            textAlignVertical: TextAlignVertical.center,
-            style: AppFont.medium14
-                .copyWith(color: Theme.of(context).indicatorColor),
+            style: AppFont.medium14.copyWith(
+              color: enable
+                  ? Theme.of(context).indicatorColor
+                  : AppColor.grayColor,
+            ),
             decoration: InputDecoration(
-             
-                errorStyle:
-                    AppFont.reguler12.copyWith(color: AppColor.errorColor),
-                errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.r),
-                  borderSide: const BorderSide(
-                    color: AppColor.errorColor,
-                  ),
-                ),
-                suffixIcon: icon,
-                prefixIcon: prefixIcon,
-                suffix: suffix,
-                hintText: hintText,
-                hintStyle: enable == false
-                    ? AppFont.medium12.copyWith(
-                        color: AppColor.textStrong,
-                      )
-                    : AppFont.reguler12.copyWith(
-                        fontWeight: FontWeight.w300, color: AppColor.textSoft),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                  borderSide: const BorderSide(
-                    color: AppColor.strokeColor,
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                  borderSide: const BorderSide(
-                    color: AppColor.strokeColor,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                  borderSide: const BorderSide(color: AppColor.primaryColor),
-                ),
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h)),
-          ),
-        ],
-      ),
+              enabled: enable,
+              filled: true,
+              fillColor: Theme.of(context).cardColor,
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+              suffixIcon: icon,
+              hintText: hintText,
+              hintStyle: AppFont.reguler14.copyWith(
+                  fontWeight: FontWeight.w300, color: AppColor.grayColor),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.r),
+                borderSide:
+                    const BorderSide(color: Colors.transparent, width: 0.5),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.r),
+                borderSide:
+                    const BorderSide(color: Colors.transparent, width: 0.5),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.r),
+                borderSide:
+                    const BorderSide(color: Colors.transparent, width: 0.5),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.r),
+                borderSide: const BorderSide(color: AppColor.primaryColor),
+              ),
+            )),
+      ],
     );
   }
 }

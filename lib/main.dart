@@ -32,7 +32,7 @@ class MyApp extends ConsumerWidget {
               routeInformationProvider: appRouter.routeInformationProvider,
               debugShowCheckedModeBanner: false,
               title: 'Base project',
-              theme: Styles.themeData(false, context),
+              theme: Styles.themeData(true, context),
             );
           });
         });

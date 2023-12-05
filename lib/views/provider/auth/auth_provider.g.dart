@@ -410,7 +410,7 @@ class _ForgotPasswordProviderElement
   dynamic get body => (origin as ForgotPasswordProvider).body;
 }
 
-String _$logoutHash() => r'4f0d55329d211061e18a3a568778e8a0aa5f4463';
+String _$logoutHash() => r'246414c7c0e218b03828b7c00012be416476462c';
 
 /// See also [logout].
 @ProviderFor(logout)

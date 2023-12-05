@@ -35,12 +35,12 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: Icon(
           Icons.chat_rounded,
           size: 48.w,
-          color: AppColor.whiteColor,
+          color: AppColor.textDark,
         ),
       ),
     );

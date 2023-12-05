@@ -1,3 +1,4 @@
+import 'package:base_project/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,12 +12,11 @@ class PrimaryButton extends StatelessWidget {
     this.width = double.infinity,
     this.margin = EdgeInsets.zero,
     required this.onPressed,
-    this.disableOnTap,
     this.disable = false,
-    this.loading = false,
-    this.background = AppColor.primaryColor,
-    this.textColor = AppColor.textStrong,
+    this.activeColor = AppColor.primaryColor,
+    this.disableColor = AppColor.grayColor,
     this.icon,
+    this.loading = false,
   });
 
   final String title;
@@ -24,11 +24,10 @@ class PrimaryButton extends StatelessWidget {
   final EdgeInsets margin;
   final double height;
   final Function() onPressed;
-  final Function()? disableOnTap;
+  final Color activeColor;
+  final Color disableColor;
   final bool disable;
   final bool loading;
-  final Color background;
-  final Color textColor;
   final Widget? icon;
   @override
   Widget build(BuildContext context) {
@@ -39,39 +38,27 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             elevation: 0,
-            backgroundColor: disable ? AppColor.textSoft : background,
+            backgroundColor: disable ? disableColor : activeColor,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.r))),
-        onPressed: loading
-            ? () {}
-            : disable
-                ? (disableOnTap ?? () {})
-                : onPressed,
+        onPressed: disable || loading ? () {} : onPressed,
         child: loading
-            ? SizedBox(
-                height: 24.h,
-                width: 24.h,
-                child: Center(
+            ? Padding(
+                padding: EdgeInsets.all(8.h),
+                child: const Center(
                   child: CircularProgressIndicator(
-                    strokeWidth: 3.w,
-                    color: textColor,
+                    color: AppColor.secondaryColor,
                   ),
                 ),
               )
             : Row(
-                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  icon != null
-                      ? Padding(
-                          padding: EdgeInsets.only(right: 12.w),
-                          child: icon,
-                        )
-                      : const SizedBox(),
+                  icon ?? const SizedBox(),
+                  icon != null ? 8.0.width : 0.0.width,
                   Text(
                     title,
-                    style: AppFont.medium14.copyWith(
-                        color: disable ? AppColor.whiteColor : textColor),
+                    style: AppFont.medium16.copyWith(color: AppColor.textLight),
                     textAlign: TextAlign.center,
                   ),
                 ],

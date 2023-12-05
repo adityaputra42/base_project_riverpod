@@ -1,4 +1,4 @@
-
+import 'package:base_project/views/screen/auth/login/component/forgot_password/reset_password.dart';
 import 'package:base_project/views/screen/auth/splahScreen/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -29,14 +29,20 @@ GoRouter appRoute(AppRouteRef ref) {
         builder: (context, state) => LoginScreen(),
         routes: [
           GoRoute(
-            path: 'forgot_password',
-            name: 'forgot_password',
-            builder: (context, state) => const ForgotPasswordScreen(),
-          ),
+              path: 'forgot_password',
+              name: 'forgot_password',
+              builder: (context, state) => ForgotPasswordScreen(),
+              routes: [
+                GoRoute(
+                  path: 'reset_password',
+                  name: 'reset_password',
+                  builder: (context, state) => ResetPasswordScreen(),
+                ),
+              ]),
           GoRoute(
             path: 'register',
             name: 'register',
-            builder: (context, state) => const RegisterScreen(),
+            builder: (context, state) => RegisterScreen(),
           ),
         ]),
     GoRoute(

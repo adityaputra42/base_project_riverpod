@@ -4,21 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProfileScreen extends ConsumerWidget {
-  const ProfileScreen({super.key});
+class SettingScreen extends ConsumerWidget {
+  const SettingScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Center(
-          child: PrimaryButton(
+      bottomNavigationBar: PrimaryButton(
         onPressed: () {
           ref.read(logoutProvider);
         },
         title: "Log out",
-        margin: EdgeInsets.symmetric(horizontal: 24.w),
-      )),
+        margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+      ),
     );
   }
 }

@@ -21,44 +21,41 @@ class CustomTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: titles
-          .map((e) => GestureDetector(
-                onTap: () {
-                  if (onTap != null) {
-                    onTap!(titles.indexOf(e));
-                  }
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    right: e == titles.last ? 0 : 16.w,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 1.h),
+          .map((e) => Padding(
+                padding: EdgeInsets.only(left: (e == titles.first ? 0 : 8.w)),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        if (onTap != null) {
+                          onTap!(titles.indexOf(e));
+                        }
+                      },
+                      child: Container(
+                        height: 36.h,
                         padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 10.h),
+                            vertical: 6.h, horizontal: 8.w),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.r),
+                            borderRadius: BorderRadius.circular(8.r),
+                            color: titles.indexOf(e) == selectedIndex
+                                ? AppColor.primaryColor
+                                : Colors.transparent,
                             border: Border.all(
-                                width: 1.h,
-                                color: titles.indexOf(e) == selectedIndex
-                                    ? AppColor.primaryColor
-                                    : AppColor.textSoft),
-                            color: titles.indexOf(e) == selectedIndex
-                                ? AppColor.secondaryColor
-                                : Colors.transparent),
-                        child: Text(
-                          e,
-                          style: AppFont.medium14.copyWith(
-                            color: titles.indexOf(e) == selectedIndex
-                                ? AppColor.textStrong
-                                : AppColor.textSoft,
-                            fontSize: fonsize.sp,
+                                width: 1.h, color: AppColor.primaryColor)),
+                        child: Center(
+                          child: Text(
+                            e,
+                            style: (titles.indexOf(e) == selectedIndex
+                                ? AppFont.medium14
+                                    .copyWith(color: AppColor.textDark)
+                                : AppFont.reguler14
+                                    .copyWith(color: AppColor.primaryColor)),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ))
           .toList(),

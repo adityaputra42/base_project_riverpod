@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'app_color.dart';
-import 'app_font.dart';
 
 class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
@@ -12,53 +11,29 @@ class Styles {
         onPrimary: isDarkTheme ? Colors.white : Colors.white,
         secondary: Colors.white,
         onSecondary: Colors.white,
-        error: AppColor.primaryColor,
-        onError: AppColor.primaryColor,
-        background:
-            isDarkTheme ? const Color(0xff1E293B) : AppColor.backgroundColor,
+        error: AppColor.redColor,
+        onError: AppColor.textDark,
+        background: isDarkTheme ? AppColor.bgDark : AppColor.bgLight,
         onBackground: isDarkTheme ? Colors.white : const Color(0xFFf9fcff),
-        surface: AppColor.textSoft,
-        onSurface: AppColor.textSoft,
+        surface: isDarkTheme ? AppColor.textDark : AppColor.textLight,
+        onSurface: isDarkTheme ? AppColor.textDark : AppColor.textLight,
       ),
       useMaterial3: false,
-      scaffoldBackgroundColor:
-          isDarkTheme ? const Color(0xff222222) : AppColor.backgroundColor,
+      scaffoldBackgroundColor: isDarkTheme ? AppColor.bgDark : AppColor.bgLight,
       primarySwatch: Colors.teal,
       primaryColor: isDarkTheme ? AppColor.primaryColor : AppColor.primaryColor,
-      indicatorColor: isDarkTheme ? Colors.white : AppColor.textStrong,
-      hintColor: isDarkTheme ? AppColor.textSoft : AppColor.textSoft,
+      indicatorColor: isDarkTheme ? AppColor.textDark : AppColor.textLight,
+      hintColor: isDarkTheme ? AppColor.grayColor : AppColor.grayColor,
       highlightColor:
           isDarkTheme ? const Color(0xff334155) : AppColor.primaryColor,
       hoverColor: isDarkTheme ? Colors.black12 : Colors.white12,
-      focusColor: isDarkTheme ? AppColor.textStrong : const Color(0xFFE6E8EE),
-      datePickerTheme: DatePickerThemeData(
-        headerBackgroundColor: AppColor.primaryColor,
-        headerForegroundColor: AppColor.backgroundColor,
-        yearOverlayColor: MaterialStateColor.resolveWith(
-            (states) => isDarkTheme ? Colors.white : AppColor.textStrong),
-        dayForegroundColor: MaterialStateColor.resolveWith(
-            (states) => isDarkTheme ? Colors.white : AppColor.textStrong),
-        yearForegroundColor: MaterialStateColor.resolveWith(
-            (states) => isDarkTheme ? Colors.white : AppColor.textStrong),
-        surfaceTintColor: Colors.white,
-        yearStyle: AppFont.medium12,
-        weekdayStyle: AppFont.medium14.copyWith(
-          color: isDarkTheme ? Colors.white : AppColor.textStrong,
-        ),
-        dayStyle: AppFont.medium12.copyWith(
-          color: isDarkTheme ? Colors.white : AppColor.textStrong,
-        ),
-        backgroundColor:
-            isDarkTheme ? const Color(0xff222222) : AppColor.backgroundColor,
-      ),
-      timePickerTheme:
-          const TimePickerThemeData(backgroundColor: AppColor.backgroundColor),
-      disabledColor: isDarkTheme ? AppColor.backgroundColor : AppColor.textSoft,
+      focusColor: isDarkTheme ? AppColor.primaryColor : AppColor.primaryColor,
+      disabledColor: isDarkTheme ? AppColor.grayColor : AppColor.grayColor,
       fontFamily: "Poppins",
       splashColor:
           isDarkTheme ? const Color(0xFF1F1F1F) : const Color(0xffEEF0F4),
-      cardColor: isDarkTheme ? const Color(0xFF1F1F1F) : Colors.white,
-      canvasColor: isDarkTheme ? const Color(0xff4E5157) : AppColor.strokeColor,
+      cardColor: isDarkTheme ? AppColor.cardDark : AppColor.cardLight,
+      canvasColor: isDarkTheme ? AppColor.grayColor : AppColor.grayColor,
       brightness: isDarkTheme ? Brightness.dark : Brightness.light,
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
           colorScheme: isDarkTheme
@@ -66,7 +41,7 @@ class Styles {
               : const ColorScheme.light()),
       appBarTheme: AppBarTheme(
           elevation: 0.5,
-          backgroundColor: isDarkTheme ? AppColor.textStrong : Colors.white),
+          backgroundColor: isDarkTheme ? AppColor.bgDark : AppColor.bgLight),
     );
   }
 }

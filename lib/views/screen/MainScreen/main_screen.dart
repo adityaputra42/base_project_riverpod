@@ -1,5 +1,5 @@
 import 'package:base_project/config/config.dart';
-import 'package:base_project/views/screen/MainScreen/profile/profile_screen.dart';
+import 'package:base_project/views/screen/MainScreen/setting/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +8,7 @@ final bottomNavBarProvider = Provider<List<dynamic>>((ref) => [
       {"label": "Home", "icon": Icons.home_rounded},
       {"label": "Market", "icon": Icons.equalizer_rounded},
       {"label": "Wallet", "icon": Icons.wallet_rounded},
-      {"label": "Profile", "icon": Icons.person},
+      {"label": "Setting", "icon": Icons.settings},
     ]);
 
 final indexNavBarProvider = StateProvider<int>((ref) => 0);
@@ -35,7 +35,7 @@ class MainScreen extends ConsumerWidget {
             child: Text("Wallet Screen"),
           );
         case 3:
-          return ProfileScreen();
+          return const SettingScreen();
 
         default:
           return const Center(
@@ -45,10 +45,10 @@ class MainScreen extends ConsumerWidget {
     }
 
     return Scaffold(
-        backgroundColor: AppColor.backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         bottomNavigationBar: ClipRRect(
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(24.r), topRight: Radius.circular(24.r)),
+              topLeft: Radius.circular(8.r), topRight: Radius.circular(8.r)),
           child: SizedBox(
             height: 72.h,
             child: BottomNavigationBar(
@@ -69,12 +69,12 @@ class MainScreen extends ConsumerWidget {
               currentIndex: ref.watch(indexNavBarProvider),
               onTap: (value) =>
                   ref.read(indexNavBarProvider.notifier).state = value,
-              backgroundColor: AppColor.whiteColor,
+              backgroundColor: Theme.of(context).cardColor,
               selectedItemColor: AppColor.primaryColor,
               iconSize: 28.h,
               selectedLabelStyle: AppFont.semibold14,
               unselectedLabelStyle: AppFont.reguler14,
-              unselectedItemColor: AppColor.textSoft,
+              unselectedItemColor: AppColor.grayColor,
             ),
           ),
         ),

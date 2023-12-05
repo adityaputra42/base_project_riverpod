@@ -1,3 +1,4 @@
+import 'package:base_project/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,25 +11,15 @@ class SecondaryButton extends StatelessWidget {
     this.height = 48,
     this.width = double.infinity,
     this.margin = EdgeInsets.zero,
-    this.borderColor = AppColor.textStrong,
-    this.textColor = AppColor.textStrong,
-    this.backgroundColor,
-    this.fontSize = 14,
     this.icon,
-    this.isloading = false,
     required this.onPressed,
   });
 
   final String title;
   final double width;
-  final double fontSize;
   final EdgeInsets margin;
   final double height;
-  final Color borderColor;
-  final Color textColor;
-  final bool isloading;
   final Widget? icon;
-  final Color? backgroundColor;
   final Function() onPressed;
   @override
   Widget build(BuildContext context) {
@@ -40,36 +31,23 @@ class SecondaryButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             elevation: 0,
-            side: BorderSide(width: 1.h, color: borderColor),
-            backgroundColor: backgroundColor ?? AppColor.whiteColor,
-            // const Color(0xffD2F1FF),
+            side: BorderSide(width: 1.h, color: AppColor.primaryColor),
+            backgroundColor: Colors.transparent,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.r))),
-        onPressed: isloading == true ? () {} : onPressed,
-        child: isloading == true
-            ? SizedBox(
-                height: 32.h,
-                width: 32.h,
-                child: Center(
-                  child: CircularProgressIndicator(
-                    strokeWidth: 3.w,
-                    color: textColor,
-                  ),
-                ),
-              )
-            : Row(
-                children: [
-                  icon ?? const SizedBox(),
-                  Expanded(
-                    child: Text(
-                      title,
-                      style: AppFont.medium14
-                          .copyWith(color: textColor, fontSize: fontSize.sp),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
+        onPressed: onPressed,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            icon ?? const SizedBox(),
+            icon != null ? 8.0.width : 0.0.width,
+            Text(
+              title,
+              style: AppFont.medium14.copyWith(color: AppColor.primaryColor),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }

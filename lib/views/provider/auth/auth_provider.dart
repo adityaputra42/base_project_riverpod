@@ -1,7 +1,6 @@
 import 'package:base_project/utils/util.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:base_project/config/network/network.dart';
 import 'package:base_project/domain/controller/auth_controller.dart';
 
 import '../../../config/config.dart';
