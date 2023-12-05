@@ -6,11 +6,11 @@ import 'package:go_router/go_router.dart';
 import '../../config/config.dart';
 
 class WidgetHelper {
-  static appBar({
-    required BuildContext context,
-    Function()? onTap,
-    required String title,
-  }) {
+  static appBar(
+      {required BuildContext context,
+      Function()? onTap,
+      required String title,
+      bool isCanBack = true}) {
     return AppBar(
       elevation: 0.5,
       shadowColor: AppColor.grayColor,
@@ -18,17 +18,23 @@ class WidgetHelper {
         padding: EdgeInsets.symmetric(horizontal: 8.w),
         child: Row(
           children: [
-            GestureDetector(
-                onTap: onTap ??
-                    () {
-                      context.pop();
-                    },
-                child: Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  color: Theme.of(context).indicatorColor,
-                  size: 20.w,
-                )),
-            16.0.width,
+            isCanBack
+                ? Row(
+                    children: [
+                      GestureDetector(
+                          onTap: onTap ??
+                              () {
+                                context.pop();
+                              },
+                          child: Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            color: Theme.of(context).indicatorColor,
+                            size: 20.w,
+                          )),
+                      16.0.width,
+                    ],
+                  )
+                : const SizedBox(),
             Expanded(
               child: Text(
                 title,

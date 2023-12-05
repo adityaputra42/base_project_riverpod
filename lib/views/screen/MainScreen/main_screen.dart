@@ -1,14 +1,17 @@
 import 'package:base_project/config/config.dart';
+import 'package:base_project/views/screen/MainScreen/history/history_screen.dart';
+import 'package:base_project/views/screen/MainScreen/home/home_screen.dart';
 import 'package:base_project/views/screen/MainScreen/setting/setting_screen.dart';
+import 'package:base_project/views/screen/MainScreen/wallet/wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final bottomNavBarProvider = Provider<List<dynamic>>((ref) => [
       {"label": "Home", "icon": Icons.home_rounded},
-      {"label": "Market", "icon": Icons.equalizer_rounded},
-      {"label": "Wallet", "icon": Icons.wallet_rounded},
-      {"label": "Setting", "icon": Icons.settings},
+      {"label": "History", "icon": Icons.history_rounded},
+      {"label": "Wallet", "icon": Icons.wallet_outlined},
+      {"label": "Setting", "icon": Icons.settings_rounded},
     ]);
 
 final indexNavBarProvider = StateProvider<int>((ref) => 0);
@@ -23,24 +26,16 @@ class MainScreen extends ConsumerWidget {
     body() {
       switch (ref.watch(indexNavBarProvider)) {
         case 0:
-          return const Center(
-            child: Text("Home Screen"),
-          );
+          return const HomeScreen();
         case 1:
-          return const Center(
-            child: Text("Market Screen"),
-          );
+          return const HistoryScreen();
         case 2:
-          return const Center(
-            child: Text("Wallet Screen"),
-          );
+          return const WalletScreen();
         case 3:
           return const SettingScreen();
 
         default:
-          return const Center(
-            child: Text("Home Screen"),
-          );
+          return const HomeScreen();
       }
     }
 
@@ -71,7 +66,7 @@ class MainScreen extends ConsumerWidget {
                   ref.read(indexNavBarProvider.notifier).state = value,
               backgroundColor: Theme.of(context).cardColor,
               selectedItemColor: AppColor.primaryColor,
-              iconSize: 28.h,
+              iconSize: 24.h,
               selectedLabelStyle: AppFont.semibold14,
               unselectedLabelStyle: AppFont.reguler14,
               unselectedItemColor: AppColor.grayColor,

@@ -1,9 +1,12 @@
+import 'package:base_project/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../config/config.dart';
+import '../../data/src/app_image.dart';
 
 class Empty extends StatelessWidget {
-  const Empty({super.key, required this.title, this.width = 120});
+  const Empty({super.key, required this.title, this.width = 160});
   final String title;
   final double width;
   @override
@@ -12,14 +15,15 @@ class Empty extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Image.asset(
-          //   AppImage.empty,
-          //   width: width.w,
-          // ),
-          // 8.0.height,
+          Image.asset(
+            AppImage.empty,
+            width: width.w,
+          ),
+          8.0.height,
           Text(
             title,
-            style: AppFont.medium14.copyWith(color: AppColor.primaryColor),
+            style: AppFont.medium16
+                .copyWith(color: Theme.of(context).indicatorColor),
           )
         ],
       ),
