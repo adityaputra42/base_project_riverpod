@@ -7,18 +7,15 @@ import 'utils/util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await PrefHelper.instance.init();
   runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appRouter = ref.watch(appRouteProvider);
-
     return ScreenUtilInit(
         useInheritedMediaQuery: true,
         designSize: const Size(430, 932),
@@ -32,7 +29,7 @@ class MyApp extends ConsumerWidget {
               routeInformationProvider: appRouter.routeInformationProvider,
               debugShowCheckedModeBanner: false,
               title: 'Base project',
-              theme: Styles.themeData(false, context),
+              theme: Styles.themeData(true, context),
             );
           });
         });
